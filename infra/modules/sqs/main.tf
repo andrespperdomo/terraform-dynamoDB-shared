@@ -1,4 +1,4 @@
-resource "aws_sqs_queue" "this" {
+resource "aws_sqs_queue" "my_queue" {
   name = var.queue_name
   tags = {
     Environment = var.environment
@@ -14,3 +14,8 @@ resource "aws_sns_topic_subscription" "this" {
   # Needed to allow SNS to send messages to SQS
   raw_message_delivery = true
 }
+
+resource "aws_sqs_queue" "my_queue" {
+  name = var.queue_name
+}
+

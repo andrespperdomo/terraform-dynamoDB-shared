@@ -1,4 +1,4 @@
-resource "aws_sns_topic" "this" {
+resource "aws_sns_topic" "my_topic" {
   name = var.topic_name
   tags = {
     Environment = var.environment
