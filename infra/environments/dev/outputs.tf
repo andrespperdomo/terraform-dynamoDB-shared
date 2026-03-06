@@ -21,3 +21,6 @@ output "queue_arn" {
 output "topic_arn" {
   value = module.notifications_topic.topic_arn
 }
+output "shared_lambda_arn" {
+  value = module.shared_lambda.lambda_arn
+}

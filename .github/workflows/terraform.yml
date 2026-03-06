@@ -61,6 +61,9 @@ jobs:
         run: echo "SNS_TOPIC_ARN=$(terraform output -raw topic_arn)" >> $GITHUB_ENV
         working-directory: infra/environments/dev
 
+      - name: Export Lambda ARN
+        run: echo "SHARED_LAMBDA_ARN=$(terraform output -raw shared_lambda_arn)" >> $GITHUB_ENV
+
       - name: List tables in LocalStack
         run: |
           aws dynamodb list-tables \
