@@ -39,7 +39,12 @@ jobs:
           echo "Table name length:=============== ${#TF_VAR_table_name}"
           echo "Hash key length:================== ${#TF_VAR_hash_key}"
       - name: Show project structure
-        run: ls -R    
+        run: ls -R
+   
+      - name: Export Terraform outputs
+        run: |
+          echo "SQS_QUEUE_URL=$(terraform output -raw queue_url)" >> $GITHUB_ENV
+          echo "SNS_TOPIC_ARN=$(terraform output -raw topic_arn)" >> $GITHUB_ENV    
 
       - name: Terraform Init
         run: terraform init

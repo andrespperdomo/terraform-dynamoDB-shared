@@ -30,3 +30,18 @@ module "notifications_table" {
   environment  = "dev"
 
 }
+
+module "notifications_topic" {
+  source       = "../../modules/sns"
+  topic_name   = "notifications-topic"
+  service_name = "notification-service"
+  environment  = "dev"
+}
+
+module "notifications_queue" {
+  source       = "../../modules/sqs"
+  queue_name   = "notifications-queue"
+  topic_arn    = module.notifications_topic.topic_arn
+  service_name = "notification-service"
+  environment  = "dev"
+}
