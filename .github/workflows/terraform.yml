@@ -53,10 +53,12 @@ jobs:
         run: terraform apply -auto-approve
         working-directory: infra/environments/dev
 
-      - name: Export Terraform outputs to GitHub Env
-        run: |
-          echo "SQS_QUEUE_URL=$(terraform output -raw queue_url)" >> $GITHUB_ENV
-          echo "SNS_TOPIC_ARN=$(terraform output -raw topic_arn)" >> $GITHUB_ENV
+      - name: Export SQS_QUEUE_URL
+        run: echo "SQS_QUEUE_URL=$(terraform output -raw queue_url)" >> $GITHUB_ENV
+        working-directory: infra/environments/dev
+
+      - name: Export SNS_TOPIC_ARN
+        run: echo "SNS_TOPIC_ARN=$(terraform output -raw topic_arn)" >> $GITHUB_ENV
         working-directory: infra/environments/dev
 
       - name: List tables in LocalStack
