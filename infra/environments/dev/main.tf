@@ -1,6 +1,6 @@
 module "orders_table" {
 
-  source = "../../modules/dynamodb"
+  source = "../../../modules/dynamodb"
 
   table_name   = "orders-table"
   hash_key     = "orderId"
@@ -11,7 +11,7 @@ module "orders_table" {
 
 module "billing_table" {
 
-  source = "../../modules/dynamodb"
+  source = "../../../modules/dynamodb"
 
   table_name   = "billing-table"
   hash_key     = "paymentId"
@@ -22,7 +22,7 @@ module "billing_table" {
 
 module "notifications_table" {
 
-  source = "../../modules/dynamodb"
+  source = "../../../modules/dynamodb"
 
   table_name   = "notifications-table"
   hash_key     = "notificationId"
