@@ -36,7 +36,9 @@ jobs:
       - name: Debug Variables
         run: |
           echo "Table name length:=============== ${#TF_VAR_table_name}"
-          echo "Hash key length:================== ${#TF_VAR_hash_key}"    
+          echo "Hash key length:================== ${#TF_VAR_hash_key}"
+      - name: Show project structure
+        run: ls -R    
 
       - name: Terraform Init
         run: terraform init
