@@ -15,7 +15,4 @@ resource "aws_sns_topic_subscription" "this" {
   raw_message_delivery = true
 }
 
-resource "aws_sqs_queue" "my_queue" {
-  name = var.queue_name
-}
 
