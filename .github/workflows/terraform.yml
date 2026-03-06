@@ -51,6 +51,7 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve
+        working-directory: infra/environments/dev
 
       - name: List tables in LocalStack
         run: |
