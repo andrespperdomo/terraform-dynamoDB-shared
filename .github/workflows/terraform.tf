@@ -1,0 +1,51 @@
+name: Terraform LocalStack
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  terraform:
+    runs-on: ubuntu-latest
+
+    services:
+      localstack:
+        image: localstack/localstack:latest
+        ports:
+          - 4566:4566
+        env:
+          SERVICES: dynamodb,s3,sns,sqs
+          DEBUG: 1
+
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Terraform
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y unzip
+          wget https://releases.hashicorp.com/terraform/1.6.6/terraform_1.6.6_linux_amd64.zip
+          unzip terraform_1.6.6_linux_amd64.zip
+          sudo mv terraform /usr/local/bin/
+
+      - name: Debug Variables
+        run: |
+          echo "Table name length:=============== ${#TF_VAR_table_name}"
+          echo "Hash key length:================== ${#TF_VAR_hash_key}"    
+
+      - name: Terraform Init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply -auto-approve
+
+      - name: List tables in LocalStack
+        run: |
+          aws dynamodb list-tables \
+            --endpoint-url=http://localhost:4566 \
+            --region us-east-1
