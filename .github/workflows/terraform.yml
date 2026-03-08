@@ -29,6 +29,13 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
 
+      - name: Wait for LocalStack
+        run: |
+          until curl -s http://localhost:4566/_localstack/health; do
+            echo "Waiting for LocalStack..."
+            sleep 5
+          done
+
       - name: Install Terraform
         run: |
           sudo apt-get update
