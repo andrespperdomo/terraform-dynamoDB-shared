@@ -62,6 +62,15 @@ jobs:
       - name: Terraform Apply
         run: terraform apply -auto-approve
         working-directory: infra/environments/dev
+     
+      - name: Start LocalStack
+        run: |
+          docker run -d \
+            --name localstack \
+            -p 4566:4566 \
+            -e SERVICES=lambda,iam,dynamodb,sqs,sns,s3 \
+            -e LAMBDA_EXECUTOR=local \
+            localstack/localstack:latest
 
       - name: Export SQS_QUEUE_URL
         run: echo "SQS_QUEUE_URL=$(terraform output -raw queue_url)" >> $GITHUB_ENV
