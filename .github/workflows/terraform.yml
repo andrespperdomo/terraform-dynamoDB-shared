@@ -26,6 +26,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Start LocalStack
+        run: |
+          docker run -d \
+          --name localstack \
+          -p 4566:4566 \
+          -e SERVICES=lambda,iam,dynamodb,sqs,sns,s3,sts,apigateway \
+          -e DEBUG=1 \
+          -e LAMBDA_EXECUTOR=docker \
+          -v /var/run/docker.sock:/var/run/docker.sock \
+          localstack/localstack
+
+      - name: Wait for LocalStack
+        run: sleep 15
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
       - name: Install Terraform
         run: |
           sudo apt-get update
