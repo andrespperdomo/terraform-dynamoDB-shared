@@ -21,6 +21,11 @@ output "queue_arn" {
 output "topic_arn" {
   value = module.notifications_topic.topic_arn
 }
+# Lambda output
 output "lambda_arn" {
   value = module.shared_lambda.lambda_arn
 }
+
+#output "api_url" {
+#  value = module.api_gateway.api_url
+#}
