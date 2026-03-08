@@ -15,7 +15,7 @@ jobs:
         ports:
           - 4566:4566
         env:
-          SERVICES: dynamodb,s3,sns,sqs,lambda,iam,apigateway
+          SERVICES: dynamodb,s3,sns,sqs,lambda,iam
           DEBUG: 1
 
     env:
