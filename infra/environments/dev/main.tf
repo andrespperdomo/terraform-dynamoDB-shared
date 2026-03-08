@@ -75,7 +75,6 @@ module "s3_bucket" {
 resource "aws_sqs_queue" "orders_queue" {
   name = "orders-queue"
 }
-
 #module "eventbridge_orders" {
 #  source = "../../modules/eventbridge"
 #  bus_name     = "orders-bus"
