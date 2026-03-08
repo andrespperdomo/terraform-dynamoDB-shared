@@ -38,7 +38,7 @@ jobs:
           localstack/localstack
 
       - name: Wait for LocalStack
-        run: sleep 15
+        run: sleep 15 
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
