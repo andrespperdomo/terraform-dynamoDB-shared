@@ -46,6 +46,7 @@ module "notifications_queue" {
   environment  = "dev"
 }
 
+
 # <-- THIS WAS MISSING OR PATH WAS WRONG -->
 module "shared_lambda" {
   source        = "../../modules/lambda"

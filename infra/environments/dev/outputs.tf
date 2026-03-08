@@ -29,3 +29,6 @@ output "lambda_arn" {
 #output "api_url" {
 #  value = module.api_gateway.api_url
 #}
+output "bucket_name" {
+  value = module.s3_bucket.bucket_name
+}
