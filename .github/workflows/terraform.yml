@@ -14,7 +14,7 @@ jobs:
         image: localstack/localstack:latest
         ports:
           - 4566:4566
-        env:
+        env: 
           SERVICES: dynamodb,s3,sns,sqs,lambda,iam,apigateway
           DEBUG: 1
           LAMBDA_EXECUTOR: docker
