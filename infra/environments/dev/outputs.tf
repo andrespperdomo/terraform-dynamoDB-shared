@@ -25,6 +25,9 @@ output "topic_arn" {
 output "lambda_arn" {
   value = module.shared_lambda.lambda_arn
 }
+output "shared_lambda_arn" {
+  value = module.shared_lambda.lambda_arn
+}
 
 #output "api_url" {
 #  value = module.api_gateway.api_url
