@@ -17,6 +17,9 @@ jobs:
         env:
           SERVICES: dynamodb,s3,sns,sqs,lambda,iam,apigateway
           DEBUG: 1
+          LAMBDA_EXECUTOR: docker
+        volumes:
+          - /var/run/docker.sock:/var/run/docker.sock
 
     env:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
